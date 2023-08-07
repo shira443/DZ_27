@@ -1,0 +1,19 @@
+---
+
+- hosts:  ubuntu.my
+  become: yes
+  tasks:
+  -  name: Install zabbix-agent on Ubuntu
+     apt:
+        name=zabbix-agent
+        state=latest
+     when:
+        ansible_os_family == "Debian"
+     notify:
+        zabbix-agent systemd
+  handlers:
+  - name: zabbix-agent systemd
+    systemd:
+     name: zabbix-agent
+     enabled: yes
+     state: started
