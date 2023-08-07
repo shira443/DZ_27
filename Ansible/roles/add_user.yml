@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+
+  - name: Add user to remote hosts
+    user: name=ansible-admin groups=sudo shell=/bin/bash
+
